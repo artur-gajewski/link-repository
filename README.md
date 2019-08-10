@@ -4,10 +4,11 @@
 
 - Maven 3.3+
 - JDK 1.8+
+- Yarn / npm
 
 ### Setup
 
-After cloning this repository, fire up backend REST API:
+After cloning this repository, fire up Spring Boot backend REST API:
 
 ```
 $ cd backend
@@ -17,20 +18,20 @@ $ cd backend
 $ mvn spring-boot:run
 ```
 
-To start front-end client:
+To start React client:
 
 ```
-$ cd frontend
-```
-
-```
-$  yarn
+$ cd client
 ```
 
 ```
-$  yarn start
+$  yarn | npm install
 ```
 
-Yarn should open the web app in your default browser at http://localhost:3000
+```
+$  yarn start | npm start
+```
+
+The app is now available at http://localhost:3000
 
 Enjoy!
