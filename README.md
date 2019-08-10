@@ -6,6 +6,14 @@
 - JDK 1.8+
 - Yarn / npm
 
+## Technologies
+
+- Java 8
+- Javascript / ES6
+- Spring Boot
+- React
+- Styled Components
+
 ### Setup
 
 After cloning this repository, fire up Spring Boot backend REST API:
