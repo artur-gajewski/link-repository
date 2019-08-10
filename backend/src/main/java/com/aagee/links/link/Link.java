@@ -3,14 +3,16 @@ package com.aagee.links.link;
 public class Link {
 	private Long id;
 	private String description;
+	private String url;
 
 	public Link() {
 	}
 
-	public Link(long id, String description) {
+	public Link(long id, String description, String url) {
 		super();
 		this.id = id;
 		this.description = description;
+		this.url = url;
 	}
 
 	public Long getId() {
@@ -27,6 +29,14 @@ public class Link {
 
 	public void setDescription(String description) {
 		this.description = description;
+	}
+
+	public String getUrl() {
+		return this.url;
+	}
+
+	public void setUrl(String url) {
+		this.url = url;
 	}
 
 }

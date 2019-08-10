@@ -59,7 +59,7 @@ class ListLinksComponent extends Component {
               {this.state.links.map(link => (
                 <tr key={link.id}>
                   <td>
-                    <a href="#">{link.description}</a>
+                    <a href={link.url}>{link.description}</a>
                   </td>
                   <td>
                     <button

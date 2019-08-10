@@ -12,10 +12,11 @@ public class LinkService {
 	private static long idCounter = 0;
 
 	static {
-		links.add(new Link(++idCounter, "Artur Gajewski @ Github"));
-		links.add(new Link(++idCounter, "Artur Gajewski @ Flickr"));
-		links.add(new Link(++idCounter, "Spring Framework"));
-		links.add(new Link(++idCounter, "Java EE"));
+		links.add(new Link(++idCounter, "Artur Gajewski @ Github", "https://github.com/artur-gajewski"));
+		links.add(new Link(++idCounter, "Artur Gajewski @ Flickr", "https://www.flickr.com/photos/arturgajewski/"));
+		links.add(new Link(++idCounter, "Spring Framework", "https://spring.io/"));
+		links.add(
+				new Link(++idCounter, "Java EE", "https://www.oracle.com/technetwork/java/javaee/overview/index.html"));
 	}
 
 	public List<Link> findAll() {

@@ -8,7 +8,8 @@ class LinkComponent extends Component {
 
     this.state = {
       id: this.props.match.params.id,
-      description: ""
+      description: "",
+      url: ""
     };
 
     this.onSubmit = this.onSubmit.bind(this);
@@ -23,17 +24,25 @@ class LinkComponent extends Component {
 
     LinkDataService.retrieveLink(this.state.id).then(response =>
       this.setState({
-        description: response.data.description
+        description: response.data.description,
+        url: response.data.url
       })
     );
   }
 
   validate(values) {
     let errors = {};
+
     if (!values.description) {
       errors.description = "Enter a Description";
     } else if (values.description.length < 5) {
       errors.description = "Enter atleast 5 Characters in Description";
+    }
+
+    if (!values.url) {
+      errors.url = "Enter link URL";
+    } else if (values.description.length < 5) {
+      errors.description = "Enter atleast 5 Characters in URL";
     }
 
     return errors;
@@ -42,7 +51,8 @@ class LinkComponent extends Component {
   onSubmit(values) {
     let link = {
       id: this.state.id,
-      description: values.description
+      description: values.description,
+      url: values.url
     };
 
     if (this.state.id === -1) {
@@ -57,14 +67,14 @@ class LinkComponent extends Component {
   }
 
   render() {
-    let { description, id } = this.state;
+    let { id, description, url } = this.state;
 
     return (
       <div>
         <h3>Link</h3>
         <div className="container">
           <Formik
-            initialValues={{ id, description }}
+            initialValues={{ id, description, url }}
             onSubmit={this.onSubmit}
             validateOnChange={false}
             validateOnBlur={false}
@@ -75,6 +85,11 @@ class LinkComponent extends Component {
               <Form>
                 <ErrorMessage
                   name="description"
+                  component="div"
+                  className="alert alert-warning"
+                />
+                <ErrorMessage
+                  name="url"
                   component="div"
                   className="alert alert-warning"
                 />
@@ -94,6 +109,10 @@ class LinkComponent extends Component {
                     type="text"
                     name="description"
                   />
+                </fieldset>
+                <fieldset className="form-group">
+                  <label>URL</label>
+                  <Field className="form-control" type="text" name="url" />
                 </fieldset>
                 <button className="btn btn-success" type="submit">
                   Save
