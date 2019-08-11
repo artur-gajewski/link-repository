@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import LinkDataService from "../service/LinkDataService";
+import LinkService from "../service/LinkService";
 
 class ListLinksComponent extends Component {
   constructor(props) {
@@ -21,13 +21,13 @@ class ListLinksComponent extends Component {
   }
 
   refreshLinks() {
-    LinkDataService.retrieveAllLinks().then(response => {
+    LinkService.retrieveAllLinks().then(response => {
       this.setState({ links: response.data });
     });
   }
 
   deleteLinkClicked(id) {
-    LinkDataService.deleteLink(id).then(response => {
+    LinkService.deleteLink(id).then(response => {
       this.setState({ message: `Delete of link ${id} Successful` });
       this.refreshLinks();
     });

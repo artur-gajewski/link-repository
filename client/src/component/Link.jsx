@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
-import LinkDataService from "../service/LinkDataService";
+import LinkService from "../service/LinkService";
 
 class LinkComponent extends Component {
   constructor(props) {
@@ -22,7 +22,7 @@ class LinkComponent extends Component {
       return;
     }
 
-    LinkDataService.retrieveLink(this.state.id).then(response =>
+    LinkService.retrieveLink(this.state.id).then(response =>
       this.setState({
         description: response.data.description,
         url: response.data.url
@@ -56,11 +56,11 @@ class LinkComponent extends Component {
     };
 
     if (this.state.id === -1) {
-      LinkDataService.createLink(link).then(() =>
+      LinkService.createLink(link).then(() =>
         this.props.history.push("/links")
       );
     } else {
-      LinkDataService.updateLink(this.state.id, link).then(() =>
+      LinkService.updateLink(this.state.id, link).then(() =>
         this.props.history.push("/links")
       );
     }

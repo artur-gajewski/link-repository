@@ -2,7 +2,7 @@ import axios from "axios";
 
 const LINK_REPOSITORY_API_URL = "http://localhost:8080";
 
-class LinkDataService {
+class LinkService {
   retrieveAllLinks(name) {
     return axios.get(`${LINK_REPOSITORY_API_URL}/links`);
   }
@@ -24,4 +24,4 @@ class LinkDataService {
   }
 }
 
-export default new LinkDataService();
+export default new LinkService();
