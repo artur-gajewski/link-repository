@@ -4,10 +4,10 @@ usage() {
 	cat <<EOF
 Usage: $(basename $0) <command>
 
-    build-backend                  Build the API backend.
-    start-backend                  Start backend API.
-    build-client                   Build React application front-end.
-    start-client                   Start React application client.
+    build-backend		Build the Spring Boot API backend container.
+    start-backend		Start API.
+    build-client		Build the React application container.
+    start-client		Start client.
 EOF
 	exit 1
 }
