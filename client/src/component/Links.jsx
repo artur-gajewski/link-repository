@@ -28,7 +28,9 @@ class ListLinksComponent extends Component {
 
   deleteLinkClicked(id) {
     LinkService.deleteLink(id).then(response => {
-      this.setState({ message: `Delete of link ${id} Successful` });
+      this.setState({
+        message: `Deletion of link with ID: ${id} was successful!`
+      });
       this.refreshLinks();
     });
   }
@@ -48,39 +50,42 @@ class ListLinksComponent extends Component {
           <div class="alert alert-success">{this.state.message}</div>
         )}
         <div className="container">
-          <table className="table">
-            <thead>
-              <tr>
-                <th width="80%">Description</th>
-                <th colSpan="2">Actions</th>
-              </tr>
-            </thead>
-            <tbody>
-              {this.state.links.map(link => (
-                <tr key={link.id}>
-                  <td>
-                    <a href={link.url}>{link.description}</a>
-                  </td>
-                  <td>
-                    <button
-                      className="btn btn-success"
-                      onClick={() => this.updateLinkClicked(link.id)}
-                    >
-                      Modify
-                    </button>
-                  </td>
-                  <td>
-                    <button
-                      className="btn btn-danger"
-                      onClick={() => this.deleteLinkClicked(link.id)}
-                    >
-                      Delete
-                    </button>
-                  </td>
+          {this.state.links.length > 0 && (
+            <table className="table">
+              <thead>
+                <tr>
+                  <th width="80%">Description</th>
+                  <th colSpan="2">Actions</th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
+              </thead>
+              <tbody>
+                {this.state.links.map(link => (
+                  <tr key={link.id}>
+                    <td>
+                      <a href={link.url}>{link.description}</a>
+                    </td>
+                    <td>
+                      <button
+                        className="btn btn-success"
+                        onClick={() => this.updateLinkClicked(link.id)}
+                      >
+                        Modify
+                      </button>
+                    </td>
+                    <td>
+                      <button
+                        className="btn btn-danger"
+                        onClick={() => this.deleteLinkClicked(link.id)}
+                      >
+                        Delete
+                      </button>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          )}
+
           <div className="row">
             <button className="btn btn-primary" onClick={this.addLinkClicked}>
               Add new link

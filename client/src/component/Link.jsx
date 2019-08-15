@@ -7,7 +7,7 @@ class LinkComponent extends Component {
     super(props);
 
     this.state = {
-      id: this.props.match.params.id,
+      id: parseInt(this.props.match.params.id),
       description: "",
       url: ""
     };
@@ -18,7 +18,7 @@ class LinkComponent extends Component {
 
   componentDidMount() {
     // eslint-disable-next-line
-    if (this.state.id == -1) {
+    if (!this.state.id || this.state.id === -1) {
       return;
     }
 
@@ -34,15 +34,15 @@ class LinkComponent extends Component {
     let errors = {};
 
     if (!values.description) {
-      errors.description = "Enter a Description";
+      errors.description = "Enter a Description!";
     } else if (values.description.length < 5) {
-      errors.description = "Enter atleast 5 Characters in Description";
+      errors.description = "Minimum length of description is 5 characters!";
     }
 
     if (!values.url) {
-      errors.url = "Enter link URL";
-    } else if (values.description.length < 5) {
-      errors.description = "Enter atleast 5 Characters in URL";
+      errors.url = "Enter link URL!";
+    } else if (values.url.length < 5) {
+      errors.description = "Minimum length of URL is 5 characters!";
     }
 
     return errors;
@@ -67,14 +67,14 @@ class LinkComponent extends Component {
   }
 
   render() {
-    let { id, description, url } = this.state;
+    let { description, url } = this.state;
 
     return (
       <div>
         <h3>Link</h3>
         <div className="container">
           <Formik
-            initialValues={{ id, description, url }}
+            initialValues={{ description, url }}
             onSubmit={this.onSubmit}
             validateOnChange={false}
             validateOnBlur={false}
@@ -93,15 +93,6 @@ class LinkComponent extends Component {
                   component="div"
                   className="alert alert-warning"
                 />
-                <fieldset className="form-group">
-                  <label>Id</label>
-                  <Field
-                    className="form-control"
-                    type="text"
-                    name="id"
-                    disabled
-                  />
-                </fieldset>
                 <fieldset className="form-group">
                   <label>Description</label>
                   <Field
