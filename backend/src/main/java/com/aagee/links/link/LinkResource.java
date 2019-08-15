@@ -1,6 +1,7 @@
 package com.aagee.links.link;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -19,42 +20,35 @@ import org.springframework.web.bind.annotation.RestController;
 public class LinkResource {
 
 	@Autowired
-	private LinkService linkService;
+	private LinkRepository linkRepository;
 
 	@GetMapping("/links")
 	public List<Link> getAllLinks() {
-		return linkService.findAll();
+		return linkRepository.findAll();
 	}
 
 	@GetMapping("/links/{id}")
-	public Link getLink(@PathVariable long id) {
-		return linkService.findById(id);
+	public Optional<Link> getLink(@PathVariable long id) {
+		return linkRepository.findById(id);
 	}
 
 	@DeleteMapping("/links/{id}")
 	public ResponseEntity<Void> deleteLink(@PathVariable long id) {
+		linkRepository.deleteById(id);
 
-		Link link = linkService.deleteById(id);
-
-		if (link != null) {
-			return ResponseEntity.noContent().build();
-		}
-
-		return ResponseEntity.notFound().build();
+		return ResponseEntity.noContent().build();
 	}
 
 	@PutMapping("/links/{id}")
 	public ResponseEntity<Link> updateLink(@PathVariable long id, @RequestBody Link link) {
-
-		Link linkUpdated = linkService.save(link);
+		Link linkUpdated = linkRepository.save(link);
 
 		return new ResponseEntity<Link>(linkUpdated, HttpStatus.OK);
 	}
 
 	@PostMapping("/links")
 	public ResponseEntity<Link> createLink(@RequestBody Link link) {
-
-		Link createdLink = linkService.save(link);
+		Link createdLink = linkRepository.save(link);
 
 		return new ResponseEntity<Link>(createdLink, HttpStatus.OK);
 	}
