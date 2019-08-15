@@ -42,6 +42,8 @@ $ yarn start | npm start
 
 The app is now available at http://localhost:3000
 
+From now on, you can start backend and client directly from `dev.sh` script.
+
 ## Docker
 
 If you wish to run both client and API from Docker, all you have to do is
